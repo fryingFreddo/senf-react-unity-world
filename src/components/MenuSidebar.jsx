@@ -22,13 +22,29 @@ const MenuSidebar = () => {
       <FlexWrapper
         flexDirection="column"
         width="calc(100% - 40px)"
+        height="calc(100% - 40px)"
         margin="20px"
+        gap="10px"
       >
-        <TertiaryButton text="Normalview" />
-        <TertiaryButton text="Topview" />
-        <TertiaryButton text="Streetview" />
+        <img
+          src={require("../assets/logo_yellow.png")}
+          width="80px"
+          style={{ margin: "20px 0px 75px 0px" }}
+        />
+        <Button variant="secondary" text="Normalview" />
+        <Button variant="secondary" text="Topview" />
+        <Button variant="secondary" text="Streetview" />
+        <div style={{ marginTop: "auto" }}>
+          <FlexWrapper flexDirection="column" gap="10px">
+            <Button variant="secondary" text="Neustart" />
 
-        <Button variant="primary" text="Save" />
+            <br />
+
+            <Button variant="secondary" text="Rückgängig" />
+
+            <Button variant="primary" text="Save" />
+          </FlexWrapper>
+        </div>
       </FlexWrapper>
     </Wrapper>
   );
