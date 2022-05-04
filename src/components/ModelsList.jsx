@@ -13,16 +13,32 @@ import {
   Tag,
 } from "senf-atomic-design-system";
 
+const tags = [
+  { name: "Plants", color: "green" },
+  { name: "Plants", color: "green" },
+  { name: "Plants", color: "green" },
+  { name: "Plants", color: "green" },
+  { name: "Plants", color: "green" },
+  { name: "Plants", color: "green" },
+];
 const ModelsList = () => {
   return (
     <div>
-      <FlexWrapper>
-        <Tag icon="dot" color="green">
-          Plants
-        </Tag>
+      <FlexWrapper
+        gap="10px"
+        width="calc(100% - 20px)"
+        margin="10px"
+        justifyContent="center"
+        alignItems="center"
+        style={{ flexFlow: "wrap" }}
+      >
+        {tags.map(({ name, color }) => (
+          <Tag icon="dot" color={color} text={name} />
+        ))}
       </FlexWrapper>
 
-      <List
+      {/* <List
+        CardType={ObjectCard}
         loading={false}
         data={[
           {
@@ -42,7 +58,7 @@ const ModelsList = () => {
               "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
           },
         ]}
-      />
+      /> */}
     </div>
   );
 };

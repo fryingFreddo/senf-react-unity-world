@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
   FlexWrapper,
@@ -32,24 +32,20 @@ const Circle = styled.div`
   ${(props) => LayerWhiteFirstDefault}
 `;
 const ComponentsSidebar = ({ unityContent }) => {
-  /*   const [order, setOrder] = useState(1);
-   */
+  const [order, setOrder] = useState(1);
+
   function spawnEnemies(amount) {
     unityContent.send("BuildingManager", "SpawnObject", amount);
   }
   return (
     <Wrapper>
       <FlexWrapper width="calc(100% - 40px)" margin="20px">
-        <FlexWrapper
-          flexDirection="column"
-          alignItems="center"
-          // onClick={() => setOrder(1)}
-        >
-          <Circle></Circle>
+        <FlexWrapper flexDirection="column" alignItems="center">
+          <Circle onClick={() => setOrder(1)}></Circle>
           <Typography variant="bodyBg">Modelle</Typography>
         </FlexWrapper>
         <FlexWrapper flexDirection="column" alignItems="center">
-          <Circle></Circle>
+          <Circle onClick={() => setOrder(2)}></Circle>
           <Typography variant="bodyBg">Formen</Typography>
         </FlexWrapper>
         <FlexWrapper flexDirection="column" alignItems="center">
@@ -58,13 +54,13 @@ const ComponentsSidebar = ({ unityContent }) => {
         </FlexWrapper>
       </FlexWrapper>
 
-      {/* {order === 1 ? (
+      {order === 1 ? (
         <ModelsList />
       ) : order === 2 ? (
         <ModelsList />
       ) : (
         <ModelsList />
-      )} */}
+      )}
     </Wrapper>
   );
 };
