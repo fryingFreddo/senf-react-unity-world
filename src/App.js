@@ -14,7 +14,6 @@ import {
   OrganizationCard,
   Auth,
 } from "senf-atomic-design-system";
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 const unityContent = new UnityContent(
@@ -29,7 +28,7 @@ const UnityWrapper = styled.div`
   background-color: #f8f8f8;
   z-index: 10;
 `;
-function App() {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -42,6 +41,6 @@ function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   FlexWrapper,
@@ -9,8 +9,11 @@ import {
   TertiaryButton,
   Button,
   Icon,
-  OrganizationCard,
+  List,
+  ObjectCard,
 } from "senf-atomic-design-system";
+import ModelsList from "./ModelsList";
+
 const Wrapper = styled.div`
   position: fixed;
   height: 100vh;
@@ -29,13 +32,19 @@ const Circle = styled.div`
   ${(props) => LayerWhiteFirstDefault}
 `;
 const ComponentsSidebar = ({ unityContent }) => {
+  /*   const [order, setOrder] = useState(1);
+   */
   function spawnEnemies(amount) {
     unityContent.send("BuildingManager", "SpawnObject", amount);
   }
   return (
     <Wrapper>
       <FlexWrapper width="calc(100% - 40px)" margin="20px">
-        <FlexWrapper flexDirection="column" alignItems="center">
+        <FlexWrapper
+          flexDirection="column"
+          alignItems="center"
+          // onClick={() => setOrder(1)}
+        >
           <Circle></Circle>
           <Typography variant="bodyBg">Modelle</Typography>
         </FlexWrapper>
@@ -48,8 +57,14 @@ const ComponentsSidebar = ({ unityContent }) => {
           <Typography variant="bodyBg">Marker</Typography>
         </FlexWrapper>
       </FlexWrapper>
-      <OrganizationCard onClick="" />
-      <button onClick={() => spawnEnemies(0)}>Spawn!</button>
+
+      {/* {order === 1 ? (
+        <ModelsList />
+      ) : order === 2 ? (
+        <ModelsList />
+      ) : (
+        <ModelsList />
+      )} */}
     </Wrapper>
   );
 };
