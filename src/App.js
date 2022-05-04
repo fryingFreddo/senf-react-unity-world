@@ -18,7 +18,7 @@ import { ThemeProvider } from "styled-components";
 import { useEffect, useState } from "react";
 
 const unityContent = new UnityContent(
-  "build/WebGLBuild.json",
+  "build/WebGLBuild_v2.json",
   "build/UnityLoader.js"
 );
 const UnityWrapper = styled.div`
@@ -36,6 +36,7 @@ const App = () => {
     unityContent.on("isObjActive", function (isActive) {
       setIsObjSelected(isActive);
       if (isActive) { console.log("Object depending on Context Menu is Active"); }
+      else if (!isActive) { console.log("Deselection or non Context Menu dependent Object selected") }
     });
   }, []);
   /*//#region spawn objects
