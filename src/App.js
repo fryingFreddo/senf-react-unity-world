@@ -1,7 +1,6 @@
 /** @format */
-
 import "./App.css";
-import Unity, { UnityContent } from "react-unity-webgl";
+import Unity, { UnityContext } from "react-unity-webgl";
 import MenuSidebar from "./components/MenuSidebar";
 import ComponentsSidebar from "./components/ComponentsSidebar";
 import styled from "styled-components";
@@ -17,10 +16,15 @@ import {
 import { ThemeProvider } from "styled-components";
 import { useEffect, useState } from "react";
 
-const unityContent = new UnityContent(
-  "build/WebGLBuild_v2.json",
-  "build/UnityLoader.js"
-);
+const unityContext = new UnityContext({
+  loaderUrl: "Build/WebGL_Build_v3.loader.js",
+  dataUrl: "Build/WebGL_Build_v3.data",
+  frameworkUrl: "Build/WebGL_Build_v3.framework.js",
+  codeUrl: "Build/WebGL_Build_v3.wasm",
+  webglContextAttributes: {
+    preserveDrawingBuffer: true,
+  },
+});
 const UnityWrapper = styled.div`
   position: fixed;
   height: 100vh;
@@ -33,10 +37,10 @@ const App = () => {
 
   const [objSelected, setIsObjSelected] = useState(true);
   useEffect(function () {
-    unityContent.on("isObjActive", function (isActive) {
+    unityContext.on("isObjActive", function (isActive) {
       setIsObjSelected(isActive);
       if (isActive) { console.log("Object depending on Context Menu is Active"); }
-      else if (!isActive) { console.log("Deselection or non Context Menu dependent Object selected") }
+      else if (!isActive) { console.log("Deselection or non Context Menu dependent Object selected"); }
     });
   }, []);
   /*//#region spawn objects
@@ -107,9 +111,9 @@ const App = () => {
       <GlobalStyle />
       <div className="App">
         <MenuSidebar />
-        <ComponentsSidebar unityContent={unityContent} />
+        <ComponentsSidebar unityContext={unityContext} />
         <UnityWrapper>
-          <Unity unityContent={unityContent} width="100%" height="100%" />
+          <Unity unityContext={unityContext} width="100%" height="100%" />
         </UnityWrapper>
       </div>
     </ThemeProvider>
