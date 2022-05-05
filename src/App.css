@@ -32,7 +32,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.unity-canvas {
+  position: absolute;
+  top: 0px;
+  left: 600px;
+  width: 960px;
+  height: 600px;
 }

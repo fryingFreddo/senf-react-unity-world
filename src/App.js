@@ -112,9 +112,7 @@ const App = () => {
       <div className="App">
         <MenuSidebar />
         <ComponentsSidebar unityContext={unityContext} />
-        <UnityWrapper>
-          <Unity unityContext={unityContext} width="100%" height="100%" />
-        </UnityWrapper>
+        <Unity className="unity-canvas" unityContext={unityContext} />
       </div>
     </ThemeProvider>
   );
