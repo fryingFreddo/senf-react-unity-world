@@ -13,29 +13,20 @@ import {
   Tag,
 } from "senf-atomic-design-system";
 
-const tags = [
-  { name: "Alle", color: "green" },
-  { name: "Pflanzen", color: "green" },
-  { name: "Mobiliar", color: "green" },
-  { name: "Gebäude", color: "green" },
-  { name: "Spielplatz", color: "green" },
-];
-const ModelsList = () => {
+const MarkersList = () => {
   return (
     <div>
-      <FlexWrapper
-        gap="10px"
-        width="calc(100% - 20px)"
-        margin="10px"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-      >
-        {tags.map(({ name, color }) => (
-          <Tag icon="dot" color={color} text={name} />
-        ))}
-      </FlexWrapper>
-
+      <ObjectCard
+        loading={false}
+        data={{
+          objectId: "sadasd",
+          title: "Marker",
+          subTitle: "Für Beschreibungen",
+          objectType: "dot",
+          imgUrl:
+            "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
+        }}
+      />
       {/* <List
         CardType={ObjectCard}
         loading={false}
@@ -62,4 +53,4 @@ const ModelsList = () => {
   );
 };
 
-export default ModelsList;
+export default MarkersList;
