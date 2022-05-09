@@ -36,7 +36,7 @@ const ModelsList = () => {
         ))}
       </FlexWrapper>
 
-      {/* <List
+     <List
         CardType={ObjectCard}
         loading={false}
         data={[
@@ -57,7 +57,7 @@ const ModelsList = () => {
               "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
           },
         ]}
-      /> */}
+      /> 
     </div>
   );
 };

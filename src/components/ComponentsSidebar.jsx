@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   FlexWrapper,
   LayerWhiteFirstDefault,
-  LayerWhiteFirstActive,
+  
   Typography,
   TertiaryButton,
   Button,
@@ -41,7 +41,7 @@ const Circle = styled.div`
     props.active ? LayerWhiteFirstDefault : LayerWhiteFirstDefault};
 `;
 const ComponentsSidebar = ({
-  unityContent,
+  
   componentsSidebarOpen,
   setComponentsSidebarOpen,
 }) => {

@@ -1,4 +1,5 @@
 /** @format */
+import * as React from 'react';
 import "./App.css";
 import Unity, { UnityContext } from "react-unity-webgl";
 import MenuSidebar from "./components/MenuSidebar";
