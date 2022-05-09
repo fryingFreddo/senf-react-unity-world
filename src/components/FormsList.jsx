@@ -13,29 +13,10 @@ import {
   Tag,
 } from "senf-atomic-design-system";
 
-const tags = [
-  { name: "Alle", color: "green" },
-  { name: "Pflanzen", color: "green" },
-  { name: "Mobiliar", color: "green" },
-  { name: "Gebäude", color: "green" },
-  { name: "Spielplatz", color: "green" },
-];
-const ModelsList = () => {
+const FormsList = () => {
   return (
     <div>
-      <FlexWrapper
-        gap="10px"
-        width="calc(100% - 20px)"
-        margin="10px"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-      >
-        {tags.map(({ name, color }) => (
-          <Tag icon="dot" color={color} text={name} />
-        ))}
-      </FlexWrapper>
-
+      Forms will display here
       {/* <List
         CardType={ObjectCard}
         loading={false}
@@ -62,4 +43,4 @@ const ModelsList = () => {
   );
 };
 
-export default ModelsList;
+export default FormsList;

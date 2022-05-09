@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {
   FlexWrapper,
   LayerWhiteFirstDefault,
+  LayerWhiteFirstActive,
   Typography,
   TertiaryButton,
   Button,
@@ -13,14 +14,18 @@ import {
   ObjectCard,
 } from "senf-atomic-design-system";
 import ModelsList from "./ModelsList";
+import FormsList from "./FormsList";
+import MarkersList from "./MarkersList";
 
 const Wrapper = styled.div`
   position: fixed;
   height: 100vh;
   width: 400px;
-  left: 200px;
   background-color: #fed957;
-  z-index: 10;
+  z-index: 9;
+  left: ${({ componentsSidebarOpen }) =>
+    componentsSidebarOpen ? "200px" : "-600px"};
+  transition: 0.5s;
 `;
 
 const Circle = styled.div`
@@ -28,28 +33,39 @@ const Circle = styled.div`
   height: 80px;
   border-radius: 50%;
   margin-bottom: 10px;
-
-  ${(props) => LayerWhiteFirstDefault}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: ${({ active }) => (active ? 1 : 0.5)};
+  ${(props) =>
+    props.active ? LayerWhiteFirstDefault : LayerWhiteFirstDefault};
 `;
-const ComponentsSidebar = ({ unityContent }) => {
+const ComponentsSidebar = ({
+  unityContent,
+  componentsSidebarOpen,
+  setComponentsSidebarOpen,
+}) => {
   const [order, setOrder] = useState(1);
 
-  function spawnEnemies(amount) {
-    unityContent.send("BuildingManager", "SpawnObject", amount);
-  }
   return (
-    <Wrapper>
+    <Wrapper componentsSidebarOpen={componentsSidebarOpen}>
       <FlexWrapper width="calc(100% - 40px)" margin="20px">
         <FlexWrapper flexDirection="column" alignItems="center">
-          <Circle onClick={() => setOrder(1)}></Circle>
+          <Circle active={order === 1} onClick={() => setOrder(1)}>
+            <Icon icon="bulb" transform="scale(1.5)" />
+          </Circle>
           <Typography variant="bodyBg">Modelle</Typography>
         </FlexWrapper>
         <FlexWrapper flexDirection="column" alignItems="center">
-          <Circle onClick={() => setOrder(2)}></Circle>
+          <Circle active={order === 2} onClick={() => setOrder(2)}>
+            <Icon icon="bulb" transform="scale(1.5)" />
+          </Circle>
           <Typography variant="bodyBg">Formen</Typography>
         </FlexWrapper>
         <FlexWrapper flexDirection="column" alignItems="center">
-          <Circle></Circle>
+          <Circle active={order === 3} onClick={() => setOrder(3)}>
+            <Icon icon="bulb" transform="scale(1.5)" />
+          </Circle>
           <Typography variant="bodyBg">Marker</Typography>
         </FlexWrapper>
       </FlexWrapper>
@@ -57,9 +73,9 @@ const ComponentsSidebar = ({ unityContent }) => {
       {order === 1 ? (
         <ModelsList />
       ) : order === 2 ? (
-        <ModelsList />
+        <FormsList />
       ) : (
-        <ModelsList />
+        <MarkersList />
       )}
     </Wrapper>
   );
