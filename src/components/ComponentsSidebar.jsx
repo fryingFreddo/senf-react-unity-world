@@ -47,9 +47,6 @@ const ComponentsSidebar = ({
 }) => {
   const [order, setOrder] = useState(1);
 
-  function spawnEnemies(amount) {
-    unityContent.send("BuildingManager", "SpawnObject", amount);
-  }
   return (
     <Wrapper componentsSidebarOpen={componentsSidebarOpen}>
       <FlexWrapper width="calc(100% - 40px)" margin="20px">
