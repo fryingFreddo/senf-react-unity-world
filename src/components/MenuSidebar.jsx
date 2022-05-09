@@ -10,6 +10,7 @@ import {
   Tag,
   RoundedButton,
 } from "senf-atomic-design-system";
+import logo from '../assets/logo_yellow.png'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -47,9 +48,10 @@ const MenuSidebar = ({ componentsSidebarOpen, setComponentsSidebarOpen }) => {
         gap="10px"
       >
         <img
-          src={require("../assets/logo_yellow.png")}
+          src={logo}
           width="80px"
           style={{ margin: "20px 0px 65px 0px" }}
+          alt="logo"
         />
         {/* <Button variant="secondary" text="Normalview" />
         <Button variant="secondary" text="Topview" />
