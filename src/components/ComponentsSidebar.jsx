@@ -5,13 +5,13 @@ import styled from "styled-components";
 import {
   FlexWrapper,
   LayerWhiteFirstDefault,
-  
   Typography,
   TertiaryButton,
   Button,
   Icon,
   List,
   ObjectCard,
+  Divider,
 } from "senf-atomic-design-system";
 import ModelsList from "./ModelsList";
 import FormsList from "./FormsList";
@@ -41,11 +41,16 @@ const Circle = styled.div`
     props.active ? LayerWhiteFirstDefault : LayerWhiteFirstDefault};
 `;
 const ComponentsSidebar = ({
-  
+  unityContext,
   componentsSidebarOpen,
   setComponentsSidebarOpen,
 }) => {
   const [order, setOrder] = useState(1);
+
+  const spawnObject = (value) => {
+    console.log(value);
+    unityContext.send("BuildingManager", "SpawnObject", value);
+  };
 
   return (
     <Wrapper componentsSidebarOpen={componentsSidebarOpen}>
@@ -69,13 +74,14 @@ const ComponentsSidebar = ({
           <Typography variant="bodyBg">Marker</Typography>
         </FlexWrapper>
       </FlexWrapper>
+      <Divider margin="20px" width="calc(100% - 40px)" color="#f8f8f8" />
 
       {order === 1 ? (
-        <ModelsList />
+        <ModelsList spawnObject={spawnObject} />
       ) : order === 2 ? (
-        <FormsList />
+        <FormsList spawnObject={spawnObject} />
       ) : (
-        <MarkersList />
+        <MarkersList spawnObject={spawnObject} />
       )}
     </Wrapper>
   );

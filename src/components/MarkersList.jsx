@@ -13,11 +13,12 @@ import {
   Tag,
 } from "senf-atomic-design-system";
 
-const MarkersList = () => {
+const MarkersList = ({ spawnObject }) => {
   return (
-    <div>
+    <React.Fragment>
       <ObjectCard
         loading={false}
+        handleButtonClick={() => spawnObject(3)}
         data={{
           objectId: "sadasd",
           title: "Marker",
@@ -49,7 +50,7 @@ const MarkersList = () => {
           },
         ]}
       /> */}
-    </div>
+    </React.Fragment>
   );
 };
 
