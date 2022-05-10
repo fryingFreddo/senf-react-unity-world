@@ -13,33 +13,39 @@ import {
   Tag,
 } from "senf-atomic-design-system";
 
-const FormsList = () => {
+const FormsList = ({ spawnObject }) => {
   return (
-    <div>
-      Forms will display here
-      {/* <List
-        CardType={ObjectCard}
-        loading={false}
-        data={[
-          {
-            objectId: "sadasd",
-            title: "Blumenkübel",
-            subTitle: "Kleingarten Sacshen",
-            objectType: "Vereine",
-            imgUrl:
-              "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
-          },
-          {
-            objectId: "xyz",
-            title: "Blumenkübel 1",
-            subTitle: "Kleingarten Sacshen",
-            objectType: "Vereine",
-            imgUrl:
-              "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
-          },
-        ]}
-      /> */}
-    </div>
+    <List
+      CardType={ObjectCard}
+      loading={false}
+      handleButtonClick={spawnObject}
+      data={[
+        {
+          objectId: 0,
+          title: "Cube",
+          subTitle: "Kleingarten Sacshen",
+          objectType: "Vereine",
+          imgUrl:
+            "https://drive.google.com/file/d/1UEkNBJXU5dLYDbuyfrBWyCyq8MZIPUHk/view?usp=sharing",
+        },
+        {
+          objectId: 1,
+          title: "Ball",
+          subTitle: "Kleingarten Sacshen",
+          objectType: "Vereine",
+          imgUrl:
+            "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
+        },
+        {
+          objectId: 2,
+          title: "Zylinder",
+          subTitle: "Kleingarten Sacshen",
+          objectType: "Vereine",
+          imgUrl:
+            "https://firebasestorage.googleapis.com/v0/b/senf-dev.appspot.com/o/organizationsData%2FQO0SOuQBIc9wEjpayU9e%2Flogo%2Flogo?alt=media&token=131ee6fa-19a0-4ee9-b8c0-43909e2373d6",
+        },
+      ]}
+    />
   );
 };
 
