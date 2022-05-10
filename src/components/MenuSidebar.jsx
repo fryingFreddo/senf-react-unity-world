@@ -1,15 +1,15 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   FlexWrapper,
-  TertiaryButton,
   Button,
-  Icon,
   Tag,
   RoundedButton,
+  Divider,
 } from "senf-atomic-design-system";
+import logo from "../assets/logo_yellow.png";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -20,23 +20,50 @@ const Wrapper = styled.div`
 `;
 
 const RoundedButtonWrapper = styled.div`
-  position: fixed;
-  top: 50vh;
+  position: relative;
+  top: -110px;
+  height: 0;
 
   transform: ${({ componentsSidebarOpen }) =>
     componentsSidebarOpen
       ? "translate(-50%, -50%) rotate(45deg)"
       : "translate(-50%, -50%)"};
   left: ${({ componentsSidebarOpen }) =>
-    componentsSidebarOpen ? "600px" : "200px"};
+    componentsSidebarOpen ? "600px" : "180px"};
   transition: 0.5s ease-out;
 `;
 const tags = [
-  { name: "Normalview", color: "green" },
-  { name: "Topview", color: "green" },
-  { name: "Streetview", color: "green" },
+  { name: "Normalview", color: "green", unityCall: "SwitchToNormalView" },
+  { name: "Topview", color: "green", unityCall: "SwitchToTopView" },
+  { name: "Streetview", color: "green", unityCall: "SwitchToStreetView" },
 ];
-const MenuSidebar = ({ componentsSidebarOpen, setComponentsSidebarOpen }) => {
+const MenuSidebar = ({
+  unityContext,
+  componentsSidebarOpen,
+  setComponentsSidebarOpen,
+}) => {
+  const [visibleMarkers, setVisibleMarkers] = useState(true);
+  const [activeView, setActiveView] = useState("SwitchToNormalView");
+
+  const switchView = (unityCall) => {
+    setActiveView(unityCall);
+    unityContext.send("Canvas", unityCall);
+  };
+
+  function hideMarkers() {
+    setVisibleMarkers(false);
+    unityContext.send("Canvas", "HideMarkers");
+  }
+  function showMarkers() {
+    setVisibleMarkers(true);
+    unityContext.send("Canvas", "ShowMarkers");
+  }
+
+  function handInProposal() {
+    unityContext.send("Canvas", "TakeScreenshot");
+    unityContext.send("Canvas", "CreateText");
+  }
+
   return (
     <Wrapper>
       <FlexWrapper
@@ -47,44 +74,56 @@ const MenuSidebar = ({ componentsSidebarOpen, setComponentsSidebarOpen }) => {
         gap="10px"
       >
         <img
-          src={require("../assets/logo_yellow.png")}
+          src={logo}
           width="80px"
           style={{ margin: "20px 0px 65px 0px" }}
+          alt="logo"
         />
-        {/* <Button variant="secondary" text="Normalview" />
-        <Button variant="secondary" text="Topview" />
-        <Button variant="secondary" text="Streetview" /> */}
+
         <FlexWrapper flexDirection="column" gap="10px">
           <Button variant="secondary" text="Info" icon="infoFill" />
           <Button variant="secondary" text="Neustart" />
         </FlexWrapper>
 
+        <Divider margin="30px 0px 30px 0px" />
+
         <FlexWrapper
           gap="10px"
           width="calc(100% - 20px)"
-          margin="140px 10px 10px 0px"
           justifyContent="flex-start"
           alignItems="center"
           flexWrap="wrap"
         >
-          {tags.map(({ name, color }) => (
-            <Tag icon="dot" color={color} text={name} />
+          {tags.map(({ name, color, unityCall }) => (
+            <Tag
+              icon="dot"
+              color={color}
+              text={name}
+              onClick={() => switchView(unityCall)}
+              active={unityCall === activeView}
+            />
           ))}
+          <RoundedButtonWrapper componentsSidebarOpen={componentsSidebarOpen}>
+            <RoundedButton
+              variant="plus"
+              onClick={() => setComponentsSidebarOpen(!componentsSidebarOpen)}
+            />
+          </RoundedButtonWrapper>
         </FlexWrapper>
-        <Button variant="secondary" size="small" icon="check" text="Marker " />
+        <Divider margin="30px 0px 30px 0px" />
 
-        <RoundedButtonWrapper componentsSidebarOpen={componentsSidebarOpen}>
-          <RoundedButton
-            variant="plus"
-            onClick={() => setComponentsSidebarOpen(!componentsSidebarOpen)}
-          />
-        </RoundedButtonWrapper>
+        <Button
+          variant="secondary"
+          size="small"
+          icon={visibleMarkers ? "check" : "dot"}
+          text="Marker"
+          onClick={visibleMarkers ? showMarkers : hideMarkers}
+        />
+
         <div style={{ marginTop: "auto" }}>
           <FlexWrapper flexDirection="column" gap="10px">
             <br />
-
             <Button variant="secondary" text="Rückgängig" />
-
             <Button variant="primary" text="Save" />
           </FlexWrapper>
         </div>
