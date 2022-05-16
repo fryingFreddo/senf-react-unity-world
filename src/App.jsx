@@ -18,10 +18,10 @@ import { ThemeProvider } from "styled-components";
 import { useEffect, useState } from "react";
 
 const unityContext = new UnityContext({
-  loaderUrl: "Build/WebGLBuild_v4.loader.js",
-  dataUrl: "Build/WebGLBuild_v4.data",
-  frameworkUrl: "Build/WebGLBuild_v4.framework.js",
-  codeUrl: "Build/WebGLBuild_v4.wasm",
+  loaderUrl: "Build/WebGLBuild_v5.loader.js",
+  dataUrl: "Build/WebGLBuild_v5.data",
+  frameworkUrl: "Build/WebGLBuild_v5.framework.js",
+  codeUrl: "Build/WebGLBuild_v5.wasm",
   webglContextAttributes: {
     preserveDrawingBuffer: true,
   },
@@ -38,14 +38,13 @@ const App = () => {
   const [componentsSidebarOpen, setComponentsSidebarOpen] = useState(false);
   const [objSelected, setIsObjSelected] = useState(true);
   useEffect(function () {
-    unityContext.on("isObjActive", function (isActive) {
+    unityContext.on("isObjActive", function (isActive, objecttype) {
       setIsObjSelected(isActive);
       if (isActive) {
-        console.log("Object depending on Context Menu is Active");
+        console.log("Object depending on Context Menu is Active" + objecttype);
       } else if (!isActive) {
         console.log(
-          "Deselection or non Context Menu dependent Object selected"
-        );
+          "Deselection or non Context Menu dependent Object selected");
       }
     });
   }, []);
